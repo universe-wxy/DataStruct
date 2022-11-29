@@ -30,19 +30,20 @@ public class First {
     }
 
     static ArrayList<Integer> BubbleSort(ArrayList<Integer> array) {
+        ArrayList<Integer> outcome=new ArrayList<>(array);
         long st = System.currentTimeMillis();
-        for (int i = 0; i < array.size(); i++)
-            for (int j = i; j < array.size(); j++) {
-                if (array.get(i) > array.get(j)) {
+        for (int i = 0; i < outcome.size(); i++)
+            for (int j = i; j < outcome.size(); j++) {
+                if (outcome.get(i) > outcome.get(j)) {
                     int temp;
-                    temp = array.get(i);
-                    array.set(i, array.get(j));
-                    array.set(j, temp);
+                    temp = outcome.get(i);
+                    outcome.set(i, outcome.get(j));
+                    outcome.set(j, temp);
                 }
             }
         long ed = System.currentTimeMillis();
         System.out.printf("冒泡排序所用时间为: %d\n", (ed - st));
-        return array;
+        return outcome;
     }
 
     static ArrayList<Integer> RadixSort(ArrayList<Integer> array) {
@@ -96,17 +97,41 @@ public class First {
         return array;
     }
 
-    //    static ArrayList<Integer> QuickSort(ArrayList<Integer> array){
-//
-//    }
+    static void QuickSort(ArrayList<Integer> array,int begin,int end){
+        if(begin>=end)
+            return;
+        int i=begin;
+        int key=array.get(begin);
+        int j=end;
+        while(i<j){
+            while(i<j&&array.get(j)>key){
+                j--;
+            }
+            if(i<j){
+                array.set(i, array.get(j));
+                i++;
+            }
+            while(i<j&&array.get(i)<key){
+                i++;
+            }
+            if(i<j){
+                array.set(j,array.get(i));
+                j--;
+            }
+            array.set(i,key);
+            QuickSort(array,begin,i-1);
+            QuickSort(array,i,end);
+        }
+    }
     static ArrayList<Integer> BinarySort(ArrayList<Integer> array) {
         ArrayList<Integer> storage = array;
         ArrayList<Integer> outcome = new ArrayList<Integer>();
+        long st=System.currentTimeMillis();
         int len = array.size();
         for (int i = 0; i < len; i++)
             outcome.add(0);
-        for (int space = 1; space < len; space++) {
-            for (int start = 0; start < len; start += 2 * space) {
+        for (int space = 1; space < len; space*=2) {
+            for (int start = 0; start < len-space; start += 2 * space) {
                 int low = start, mid = Integer.min(start + space, len), high = Integer.min(start + 2 * space, len);
                 int k = low;
                 int st1 = low, ed1 = mid;
@@ -118,26 +143,64 @@ public class First {
                 while (st2 < ed2)
                     outcome.set(k++, storage.get(st2++));
             }
-            storage = array;
+            storage=new ArrayList<>(outcome);
         }
+        long ed=System.currentTimeMillis();
+        System.out.printf("归并排序所用时间为: %d\n", (ed - st));
         return outcome;
     }
 //    static ArrayList<Integer> HeapSort(ArrayList<Integer> array){
 //
 //    }
-//    static ArrayList<Integer> ChoseSort(ArrayList<Integer> array){
-//
-//    }
+    static ArrayList<Integer> ChoseSort(ArrayList<Integer> array){
+        ArrayList<Integer> outcome = new ArrayList<>(array);
+        long st=System.currentTimeMillis();
+        for(int i=0;i<outcome.size()/2;i++) {
+            int min= i;
+            int max= outcome.size()-1-i;
+            for (int j = i + 1; j < outcome.size()-1-i; j++) {
+                if(outcome.get(j)< outcome.get(min))
+                    min=j;
+                else if(outcome.get(j)>outcome.get(max))
+                    max=j;
+            }
+            int temp=outcome.get(outcome.size()-1-i);
+            outcome.set(outcome.size()-1-i,outcome.get(max));
+            outcome.set(max,temp);
+            temp= outcome.get(i);
+            outcome.set(i, outcome.get(min));
+            outcome.set(min,temp);
+        }
+        long ed=System.currentTimeMillis();
+        System.out.printf("选择排序所用时间为: %d\n", (ed - st));
+        return outcome;
+    }
 
 
     public static void main(String[] args) {
-        Random seed = new Random();
         ArrayList<Integer> array = new ArrayList<Integer>();
 //        for(int i=0;i<100000;i++)
 //            array.add(seed.nextInt());
-        array = new ArrayList<>(Arrays.asList(5, 8, 3, 11, 7, 10, 2, 6, 33, 75, 15));
+        array = new ArrayList<>(Arrays.asList(5, 8, 3, 11, 7, 10, 2, 6));
         ArrayList<Integer> InsertSortArray = InsertSort(array);
+        System.out.println(InsertSortArray.toString());
+
         ArrayList<Integer> BubbleSortArray = BubbleSort(array);
         System.out.println(BubbleSortArray.toString());
+
+        ArrayList<Integer> ChoseSortArray=ChoseSort(array);
+        System.out.println(ChoseSortArray.toString());
+
+        ArrayList<Integer> BinarySortArray=BinarySort(array);
+        System.out.println(BinarySortArray.toString());
+
+        ArrayList<Integer> ShellSortArray=ShellSort(array);
+        System.out.println(ShellSortArray.toString());
+
+        ArrayList<Integer> RadixSortArray=RadixSort(array);
+        System.out.println(RadixSortArray.toString());
+
+        QuickSort(array,0, array.size()-1);
+        System.out.println(array);
     }
 }
