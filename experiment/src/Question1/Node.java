@@ -1,4 +1,4 @@
-package Final.Question1;
+package Question1;
 
 public class Node{
     Object data;						//数据元素

@@ -1,4 +1,4 @@
-package Final.Question4;
+package Question4;
 
 import java.util.Scanner;
 import java.util.Stack;

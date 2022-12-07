@@ -1,4 +1,4 @@
-package Final.Question1;
+package Question1;
 
 public interface List{
     public void insert(int i,Object obj) throws Exception;
