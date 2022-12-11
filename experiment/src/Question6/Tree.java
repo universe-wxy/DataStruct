@@ -18,13 +18,15 @@ public class Tree {
             r = null;
         else
             r = right.root;
-        root = new Node(null,data, l, r);
+        root = new Node(null, data, l, r);
     }
-    Tree(int data,Node l,Tree r){
-        root=new Node(null,data,l,r.root);
+
+    Tree(int data, Node l, Tree r) {
+        root = new Node(null, data, l, r.root);
     }
+
     Tree(int data) {
-        root = new Node(null,data);
+        root = new Node(null, data);
     }
 
 }

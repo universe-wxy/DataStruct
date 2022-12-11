@@ -21,10 +21,11 @@ public class Maze {
                 maze[i][j] = reader.nextInt();
         s.push(new RecordType(1, 1, -1));
         ans = 0;
-        int x,y;
+        int x, y;
         while (!s.empty()) {
             RecordType temp = s.pop();
-            x=temp.x;y=temp.y;
+            x = temp.x;
+            y = temp.y;
             if (x == n && y == m) {
                 ans++;
                 System.out.println("path" + ans);
@@ -32,18 +33,18 @@ public class Maze {
                     System.out.println(recordType.x + " " + recordType.y);
                 System.out.println(x + " " + y);
                 System.out.println();
-                boolean flag=false;
+                boolean flag = false;
                 RecordType past = l.peek();
                 while (past.num == 1) {
                     l.pop();
                     maze[past.x][past.y] = 1;
-                    if(l.empty()) {
-                        flag=true;
+                    if (l.empty()) {
+                        flag = true;
                         break;
                     }
                     past = l.peek();
                 }
-                if(!flag)
+                if (!flag)
                     l.peek().num--;
                 continue;
             }
@@ -64,37 +65,37 @@ public class Maze {
                 s.push(new RecordType(x, y + 1, 4));
                 cnt++;
             }
-            if (maze[x + 1][y - 1]==1) {
+            if (maze[x + 1][y - 1] == 1) {
                 s.push(new RecordType(x + 1, y - 1, 0));
                 cnt++;
             }
-            if (maze[x + 1][y + 1]==1) {
+            if (maze[x + 1][y + 1] == 1) {
                 s.push(new RecordType(x + 1, y + 1, 2));
                 cnt++;
             }
 
-            if (maze[x - 1][y - 1]==1) {
+            if (maze[x - 1][y - 1] == 1) {
                 s.push(new RecordType(x - 1, y - 1, 5));
                 cnt++;
             }
 
-            if (maze[x - 1][y + 1]==1) {
+            if (maze[x - 1][y + 1] == 1) {
                 s.push(new RecordType(x - 1, y + 1, 7));
                 cnt++;
             }
-            if(cnt==0){
-                boolean flag=false;
+            if (cnt == 0) {
+                boolean flag = false;
                 RecordType past = l.peek();
                 while (past.num == 1) {
                     l.pop();
                     maze[past.x][past.y] = 1;
-                    if(l.empty()) {
-                        flag=true;
+                    if (l.empty()) {
+                        flag = true;
                         break;
                     }
                     past = l.peek();
                 }
-                if(!flag)
+                if (!flag)
                     l.peek().num--;
                 continue;
             }
