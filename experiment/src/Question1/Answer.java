@@ -3,7 +3,7 @@ package Question1;
 import java.util.Scanner;
 
 
-public class first {
+public class Answer {
     public static void main(String[] args) throws Exception {
         SingleList list = new SingleList();
         Scanner reader = new Scanner(System.in);
@@ -17,10 +17,10 @@ public class first {
                 if (temp == list.head)
                     temp = temp.next;
             }
-            System.out.println(temp.data + " " + temp.next.data);
+            System.out.print(temp.data+" ");
             list.delete(temp);
         }
-        System.out.println(list.getData(0));
+        System.out.print(list.getData(0));
     }
 }
 
