@@ -5,8 +5,8 @@ import java.util.Stack;
 
 public class Maze {
     public static int[][] maze = new int[105][105];
-    public static Stack<RecordType> s = new Stack<RecordType>();
-    public static Stack<RecordType> l = new Stack<RecordType>();
+    public static Stack<RecordType> s = new Stack<>();
+    public static Stack<RecordType> l = new Stack<>();
     static int n, m, ans;
 
     public static void main(String[] args) {
@@ -102,5 +102,7 @@ public class Maze {
             l.push(new RecordType(x, y, cnt));
             maze[x][y] = 0;
         }
+        if(ans==0)
+            System.out.println("THERE IS NO PATH IN MAZE.");
     }
 }

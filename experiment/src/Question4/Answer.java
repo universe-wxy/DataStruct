@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class Answer {
     static int s;
-    static Vector<Integer> w = new Vector<Integer>();
+    static Vector<Integer> w = new Vector<>();
 
     public static void dfs(int V, Stack<Integer> ans) {
         if (V == s){
@@ -27,12 +27,12 @@ public class Answer {
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
         int n;
-        n = reader.nextInt();
         s = reader.nextInt();
+        n = reader.nextInt();
         for (int i = 0; i < n; i++)
             w.add(reader.nextInt());
         for (int i = 0; i < n; i++) {
-            Stack<Integer> temp= new Stack<Integer>();
+            Stack<Integer> temp= new Stack<>();
             temp.push(i);
             dfs(w.get(i), temp);
         }
