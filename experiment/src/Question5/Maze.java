@@ -30,8 +30,8 @@ public class Maze {
                 ans++;
                 System.out.println("path" + ans);
                 for (RecordType recordType : l)
-                    System.out.println(recordType.x + " " + recordType.y);
-                System.out.println(x + " " + y);
+                    System.out.print("("+recordType.x + "," + recordType.y+")->");
+                System.out.println("("+x + "," + y+")");
                 System.out.println();
                 boolean flag = false;
                 RecordType past = l.peek();
