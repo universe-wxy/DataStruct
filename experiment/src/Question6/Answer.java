@@ -19,12 +19,22 @@ public class Answer {
         }
         for (int i = 0; i < 25; i++)
             for (int j = i + 1; j < 25; j++) {
-                if (cnt[i].num > cnt[j].num&&cnt[j].num!=0) {
+                if (cnt[i].num > cnt[j].num) {
                     RecordType temp = cnt[i];
                     cnt[i] = cnt[j];
                     cnt[j] = temp;
                 }
             }
+        for(int i=0;i<25;i++){
+            if(cnt[i].num==0)
+                continue;
+            int k=0;
+            while(i<25){
+                cnt[k]=cnt[i];
+                cnt[i++]=cnt[k++];
+            }
+            break;
+        }
         Node origin=new Node((char) (cnt[0].ch + 'A'),cnt[0].num,null,null);
         Tree Huffman = new Tree(cnt[0].num, (Tree) null, null);
         Huffman.root=origin;
@@ -69,9 +79,9 @@ public class Answer {
         Init(s);
         ArrayList<Integer> encode = Encode(s);
         String decode = Decode(encode);
-        for(int i=0;i<encode.size();i++)
-            System.out.print(encode.get(i));
+        for (Integer integer : encode) System.out.print(integer);
         System.out.println();
         System.out.println(decode);
+        System.out.println(map.toString());
     }
 }
