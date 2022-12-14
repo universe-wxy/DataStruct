@@ -1,10 +1,8 @@
 package Question3;
 
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
-
-public class Test {
+public class Answer {
 
     public static void main(String[] args)
     {
